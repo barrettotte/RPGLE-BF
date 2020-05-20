@@ -2,7 +2,7 @@
 # A completely stripped down version of 
 #   https://github.com/barrettotte/RPGLE-Twilio/blob/master/build.sh
 
-BIN_LIB='OTTEB1'
+BIN_LIB='BOLIB'
 
 IFS_BASE=$(pwd)
 IFS_SRC="src"
@@ -28,4 +28,5 @@ build_rpgle(){
 }
 
 build_rpgle 'bffree' 'BF RPGLE Free'
+
 echo -e '\nDone.'

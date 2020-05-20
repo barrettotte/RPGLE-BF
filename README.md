@@ -3,7 +3,10 @@ Showing the evolution of RPG by making a BF interpreter in RPG/400, RPGLE Fixed,
 
 
 ## Setup
-* ensure CCSID correct - ```chgjob ccsid(37)```
+* clone - ```git -c http.sslVerify=false clone https://github.com/barrettotte/RPG-BF.git```
+* build - ```cd RPG-BF; chmod u+x build.sh; ./build.sh```
+* set CCSID - ```CHGJOB CCSID(37)``` (CL)
+* run - ```CALL PGM(BOLIB/BFFREE) PARM('...' '')```
 
 
 ## Commands

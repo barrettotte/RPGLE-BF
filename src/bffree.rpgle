@@ -5,7 +5,7 @@ ctl-opt main(main);
 ctl-opt option(*srcstmt:*nodebugio:*nounref) dftactgrp(*no);
 
 dcl-c MEMSIZE  30000;
-dcl-c PGMSIZE  512;
+dcl-c PGMSIZE  107;
 dcl-c BUFFSIZE 52;
 
 dcl-s memory    int(3) dim(MEMSIZE) inz(*zeros);
@@ -18,8 +18,6 @@ dcl-pr main extpgm('BFFREE');
   *n char(MEMSIZE);
   *n char(BUFFSIZE);
 end-pr;
-
-// ++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.
 
 // program entry
 dcl-proc main;
@@ -55,13 +53,13 @@ dcl-proc main;
       when (c = ',');
         bfRead();
       other;
-        dsply ('Invalid character found ' + c);
-        leave;
+        // ignore bad characters
     endsl;
     insPtr += 1;
   enddo;
 
-  dsply (%trim(outBuffer)));
+  dsply (%trim(outBuffer));
+  // TODO: increase buffer size and output multiple smaller buffers
 
   *inlr = *on;
 end-proc;

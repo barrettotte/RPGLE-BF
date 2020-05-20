@@ -1,0 +1,11 @@
+PGM
+  
+  /* TODO: accept pgm target and IFS path to BF program to load from */
+
+  /* TODO: call RPGLE utility program to load BF string from IFS file */
+
+  /* TODO: call BF interpreter using BF string
+  
+  /* TODO: display output buffer from BF interpreter */
+
+ENDPGM
