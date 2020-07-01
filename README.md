@@ -1,9 +1,9 @@
-# RPG400-BF
-Showing the evolution of RPG by making a BF interpreter in RPG/400, RPGLE Fixed, and RPGLE free.
+# RPGLE-BF
+A BF interpreter in RPGLE
 
 
 ## Setup
-* clone - ```git -c http.sslVerify=false clone https://github.com/barrettotte/RPG-BF.git```
+* clone - ```git -c http.sslVerify=false clone https://github.com/barrettotte/RPGLE-BF.git```
 * build - ```cd RPG-BF; chmod u+x build.sh; ./build.sh```
 * set CCSID - ```CHGJOB CCSID(37)``` (CL)
 * run - ```CALL PGM(BOLIB/BFFREE) PARM('...' '')```
