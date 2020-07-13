@@ -1,11 +1,18 @@
-PGM
-  
-  /* TODO: accept pgm target and IFS path to BF program to load from */
+/* Interpret BF program from IFS */
 
-  /* TODO: call RPGLE utility program to load BF string from IFS file */
-
-  /* TODO: call BF interpreter using BF string
+PGM PARM(&IFSPATH)
   
-  /* TODO: display output buffer from BF interpreter */
+  /* Parms */
+  DCL VAR(&IFSPATH) TYPE(*CHAR) LEN(127)
+
+  /* Variables */
+  DCL VAR(&BFSRC)   TYPE(*CHAR) LEN(4096)
+  DCL VAR(&OUTBUFFER) TYPE(*CHAR) LEN(52)
+
+  /* Read BF program from IFS */
+  CALL PGM(IFSREAD) PARM(&IFSPATH &BFSRC)
+
+  /* Interpret BF program */
+  /* CALL PGM(BFINT) PARM(&BFSRC &OUTBUFFER) */
 
 ENDPGM

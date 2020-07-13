@@ -28,7 +28,7 @@ dcl-proc main;
 
   dcl-s src like(bfpgm) inz(*blanks);
   dcl-s c char(1) inz('');
-  
+
   init();
   src = sanitize(bfpgm);
 

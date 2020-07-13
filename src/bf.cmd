@@ -1,0 +1,4 @@
+CMD PROMPT('BF Interpreter')
+
+PARM KWD(IFSPATH) TYPE(*CHAR) LEN(127) REL(*NE '') +
+       MIN(1) PROMPT('IFS PATH:')

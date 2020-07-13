@@ -3,8 +3,11 @@
 
   ctl-opt main(main);
   ctl-opt option(*srcstmt:*nodebugio:*nounref) dftactgrp(*no);
-  
-  dcl-pr main extpgm('IFSREAD') end-pr;
+
+  dcl-pr main extpgm('IFSREAD');
+    *n char(127);
+    *n char(4096);
+  end-pr;
 
   // https://www.rpgpgm.com/2016/03/a-better-way-to-read-file-in-ifs-with.html
   dcl-pr fopen pointer extproc('_C_IFS_fopen');
@@ -23,11 +26,15 @@
   end-pr;
 
   dcl-proc main;
-    dcl-s  fpath     char(128);
-    dcl-s  fcontents varchar(4096);
+    dcl-pi *n;
+      fpath     char(127);
+      fcontents char(4096);
+    end-pi;
+    
+    dcl-s fp char(128);
 
-    fpath = '/home/OTTEB/RPG-BF/test/hello.bf' + x'00';
-    fcontents = readFileContents(fpath);
+    fp = fpath + x'00';
+    fcontents = readFileContents(fp);
 
     on-exit;
       *inlr = *on;
