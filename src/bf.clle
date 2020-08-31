@@ -6,13 +6,22 @@ PGM PARM(&IFSPATH)
   DCL VAR(&IFSPATH) TYPE(*CHAR) LEN(127)
 
   /* Variables */
-  DCL VAR(&BFSRC)   TYPE(*CHAR) LEN(4096)
-  DCL VAR(&OUTBUFFER) TYPE(*CHAR) LEN(52)
+  DCL VAR(&BFSRC) TYPE(*CHAR) LEN(4096)
+  DCL VAR(&RESULT) TYPE(*CHAR) LEN(128)
+
+  /* check CMD passed path correctly */
+  SNDUSRMSG MSG('Reading from ' || &IFSPATH)
 
   /* Read BF program from IFS */
   CALL PGM(IFSREAD) PARM(&IFSPATH &BFSRC)
 
+  /* check BF SRC was read correctly */
+  SNDUSRMSG MSG('BFSRC: ' || %TRIM(&BFSRC))
+
   /* Interpret BF program */
-  /* CALL PGM(BFINT) PARM(&BFSRC &OUTBUFFER) */
+  CALL PGM(BFINT) PARM(&BFSRC &RESULT)
+
+  /* Interpreted result */
+  SNDUSRMSG MSG('Result: ' || &RESULT)
 
 ENDPGM

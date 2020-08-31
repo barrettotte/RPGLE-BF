@@ -3,7 +3,7 @@
 # A completely stripped down version of 
 #   https://github.com/barrettotte/RPGLE-Twilio/blob/master/build.sh
 
-BIN_LIB='OTTEB1'
+BIN_LIB='BOLIB'
 
 IFS_BASE=$(pwd)
 IFS_SRC="src"
@@ -21,29 +21,26 @@ exec_qsh(){
 
 build_rpgle(){
   echo ' '
-  exec_qsh "CHGATR OBJ('$IFS_SRC/$1.rpgle') ATR(*CCSID) VALUE(1252)"
   exec_qsh "CRTSRCPF FILE($BIN_LIB/QRPGLESRC) RCDLEN(112)"
   exec_qsh "CPYFRMSTMF FROMSTMF('$IFS_SRC/$1.rpgle') TOMBR('/QSYS.lib/$BIN_LIB.lib/QRPGLESRC.file/$1.mbr') MBROPT(*REPLACE)"
   exec_qsh "CHGPFM FILE($BIN_LIB/QRPGLESRC) MBR($1) SRCTYPE(RPGLE) TEXT('$2')"
-  exec_qsh "CRTBNDRPG PGM($BIN_LIB/$1) SRCSTMF('$IFS_SRC/$1.rpgle') OPTION(*NOUNREF) DBGVIEW(*LIST) INCDIR('$IFS_SRC')" -log "$1.rpgle"
+  exec_qsh "CRTBNDRPG PGM($BIN_LIB/$1) SRCFILE($BIN_LIB/QRPGLESRC) OPTION(*NOUNREF) DBGVIEW(*LIST) INCDIR('$IFS_SRC')" -log "$1.rpgle"
 }
 
 build_clle(){
   echo ' '
-  exec_qsh "CHGATR OBJ('$IFS_SRC/$1.clle') ATR(*CCSID) VALUE(1252)"
   exec_qsh "CRTSRCPF FILE($BIN_LIB/QCLLESRC) RCDLEN(112)"
   exec_qsh "CPYFRMSTMF FROMSTMF('$IFS_SRC/$1.clle') TOMBR('/QSYS.lib/$BIN_LIB.lib/QCLLESRC.file/$1.mbr') MBROPT(*REPLACE)"
   exec_qsh "CHGPFM FILE($BIN_LIB/QCLLESRC) MBR($1) SRCTYPE(CLLE) TEXT('$2')"
-  exec_qsh "CRTBNDCL PGM($BIN_LIB/$1) SRCSTMF('$IFS_SRC/$1.clle') DBGVIEW(*LIST) INCDIR('$IFS_SRC')" -log "$1.clle"
+  exec_qsh "CRTBNDCL PGM($BIN_LIB/$1) SRCFILE($BIN_LIB/QCLLESRC) DBGVIEW(*LIST)" -log "$1.clle"
 }
 
 build_cmd(){
   echo ' '
-  exec_qsh "CHGATR OBJ('$IFS_CMD/$1.cmd') ATR(*CCSID) VALUE(1252)"
   exec_qsh "CRTSRCPF FILE($BIN_LIB/QCMDSRC) RCDLEN(132)"
-  exec_qsh "CPYFRMSTMF FROMSTMF('$IFS_CMD/$1.cmd') TOMBR('/QSYS.lib/$BIN_LIB.lib/QCMDSRC.file/$1.mbr') MBROPT(*REPLACE)"
+  exec_qsh "CPYFRMSTMF FROMSTMF('$IFS_SRC/$1.cmd') TOMBR('/QSYS.lib/$BIN_LIB.lib/QCMDSRC.file/$1.mbr') MBROPT(*REPLACE)"
   exec_qsh "CHGPFM FILE($BIN_LIB/QCMDSRC) MBR($1) SRCTYPE(CMD) TEXT('$2')"
-  exec_qsh "CRTCMD PRDLIB($BIN_LIB) CMD($BIN_LIB/$1) PGM($1) SRCSTMF('$IFS_SRC/$1.cmd')" -log "$1.cmd"
+  exec_qsh "CRTCMD PRDLIB($BIN_LIB) CMD($BIN_LIB/$1) PGM($1) SRCFILE($BIN_LIB/QCMDSRC)" -log "$1.cmd"
 }
 
 build_rpgle 'ifsread' 'Read file from IFS'
