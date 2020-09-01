@@ -4,6 +4,9 @@ A crude BF interpreter in RPGLE.
 My only goal was to get "Hello World!" displayed from a BF program. This "interpreter" will definitely break on complex BF programs.
 
 
+![screenshot.png](screenshot.png)
+
+
 ## Setup
 * clone - ```git -c http.sslVerify=false clone https://github.com/barrettotte/RPGLE-BF.git```
 * build - ```cd RPGLE-BF; chmod u+x build.sh; ./build.sh```
