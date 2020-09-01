@@ -109,7 +109,7 @@ dcl-proc moveRight;
 end-proc;
 
 
-// increment data pointer to next cell on the left
+// decrement data pointer to next cell on the left
 dcl-proc moveLeft;
   if memPtr = 1;
     memPtr = MEMSIZE;
