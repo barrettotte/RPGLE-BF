@@ -10,18 +10,18 @@ PGM PARM(&IFSPATH)
   DCL VAR(&RESULT) TYPE(*CHAR) LEN(128)
 
   /* check CMD passed path correctly */
-  SNDUSRMSG MSG('Reading from ' || &IFSPATH)
+  /* SNDUSRMSG MSG('Reading from ' || &IFSPATH) MSGTYPE(*INFO) */
 
   /* Read BF program from IFS */
   CALL PGM(IFSREAD) PARM(&IFSPATH &BFSRC)
 
   /* check BF SRC was read correctly */
-  SNDUSRMSG MSG('BFSRC: ' || %TRIM(&BFSRC))
+  SNDUSRMSG MSG(%TRIM(&BFSRC)) MSGTYPE(*INFO)
 
   /* Interpret BF program */
   CALL PGM(BFINT) PARM(&BFSRC &RESULT)
 
   /* Interpreted result */
-  SNDUSRMSG MSG('Result: ' || &RESULT)
+  SNDUSRMSG MSG(&RESULT) MSGTYPE(*INFO)
 
 ENDPGM

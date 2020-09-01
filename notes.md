@@ -19,7 +19,7 @@ Converted zero indexing to one indexing!
 ```%char(%editc(memory(memPtr):'X'))```
 
  H   e   l   l   o       W   o   r   l   d   !   \n
-073 102 109 109 112 033 088 112 115 109 101 034 011
+values ('y' ,ascii('y') ,chr(ascii('y')) , hex(chr(ascii('y'))) );
 
 
 ASCII and EBCDIC character sets

@@ -1,7 +1,7 @@
 # RPGLE-BF
 A crude BF interpreter in RPGLE.
 
-The goal was to get a basic BF hello world interpreted. I'm very confident this interpreter will break on complex programs.
+My only goal was to get "Hello World!" displayed from a BF program. This "interpreter" will definitely break on complex BF programs.
 
 
 ## Setup
